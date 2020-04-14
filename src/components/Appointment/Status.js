@@ -1,0 +1,16 @@
+import React from "react";
+
+import "./styles.scss";
+
+const status = props => (
+  <main className="appointment__card appointment__card--status">
+    <img
+      className="appointment__status-image"
+      src="images/status.png"
+      alt="Loading"
+    />
+    <h1 className="text--semi-bold">{props.message}</h1>
+  </main>
+);
+
+export default status;
