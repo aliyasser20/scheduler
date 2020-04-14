@@ -17,6 +17,7 @@ import Show from "../src/components/Appointment/Show";
 import Confirm from "../src/components/Appointment/Confirm";
 import Status from "../src/components/Appointment/Status";
 import Error from "../src/components/Appointment/Error";
+import Form from "../src/components/Appointment/Form";
 
 const days = [
   {
@@ -162,5 +163,21 @@ storiesOf("Appointment", module)
     <Error
       message="Could not delete appointment."
       onClose={action("onClose")}
+    />
+  ))
+  .add("Edit", () => (
+    <Form
+      name="Ali"
+      interviewers={interviewers}
+      interviewer={1}
+      onSave={action("onSave")}
+      onCancel={action("onCancel")}
+    />
+  ))
+  .add("Create", () => (
+    <Form
+      interviewers={interviewers}
+      onSave={action("onSave")}
+      onCancel={action("onCancel")}
     />
   ));
