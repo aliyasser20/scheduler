@@ -80,14 +80,14 @@ storiesOf("InterviewerListItem", module)
   .add("Unselected", () => (
     <InterviewerListItem
       id={interviewer.id}
-      name={interviewer.name}
+      value={interviewer.name}
       avatar={interviewer.avatar}
     />
   ))
   .add("Selected", () => (
     <InterviewerListItem
       id={interviewer.id}
-      name={interviewer.name}
+      value={interviewer.name}
       avatar={interviewer.avatar}
       selected
     />
@@ -95,9 +95,9 @@ storiesOf("InterviewerListItem", module)
   .add("Clickable", () => (
     <InterviewerListItem
       id={interviewer.id}
-      name={interviewer.name}
+      value={interviewer.name}
       avatar={interviewer.avatar}
-      setInterviewer={action("setInterviewer")}
+      setInterviewer={event => action("setInterviewer")(interviewer.id)}
     />
   ));
 
