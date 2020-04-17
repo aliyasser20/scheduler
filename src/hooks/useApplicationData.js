@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import lo from "lodash";
 
 const useApplicationData = () => {
   const [state, setState] = useState({
@@ -38,9 +39,17 @@ const useApplicationData = () => {
     };
 
     return axios.put(`/appointments/${id}`, { interview }).then(resp => {
+      const days = lo.cloneDeep(state.days);
+      // eslint-disable-next-line no-restricted-syntax
+      for (const day in days) {
+        if (days[day].name === state.day && !state.appointments[id].interview) {
+          days[day].spots -= 1;
+        }
+      }
       setState({
         ...state,
-        appointments
+        appointments,
+        days
       });
     });
   };
@@ -57,9 +66,18 @@ const useApplicationData = () => {
     };
 
     return axios.delete(`/appointments/${id}`).then(resp => {
+      const days = lo.cloneDeep(state.days);
+
+      // eslint-disable-next-line no-restricted-syntax
+      for (const day in days) {
+        if (days[day].name === state.day) {
+          days[day].spots += 1;
+        }
+      }
       setState({
         ...state,
-        appointments
+        appointments,
+        days
       });
     });
   };
