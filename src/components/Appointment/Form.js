@@ -8,6 +8,7 @@ import "./styles.scss";
 const Form = props => {
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
   const [name, setName] = useState(props.name || "");
+  const [error, setError] = useState("");
 
   const reset = () => {
     setName("");
@@ -17,6 +18,15 @@ const Form = props => {
   const cancel = () => {
     reset();
     props.onCancel();
+  };
+
+  const validate = () => {
+    if (name === "") {
+      setError("Student name cannot be blank");
+      return;
+    }
+
+    props.onSave(name, interviewer);
   };
 
   return (
@@ -31,8 +41,10 @@ const Form = props => {
             value={name}
             onChange={e => setName(e.target.value)}
             onSubmit={e => e.preventDefault()}
+            data-testid="student-name-input"
           />
         </form>
+        <section className="appointment__validation">{error}</section>
         <InterviewerList
           interviewers={props.interviewers}
           interviewer={interviewer}
@@ -44,7 +56,7 @@ const Form = props => {
           <Button onClick={cancel} danger>
             Cancel
           </Button>
-          <Button onClick={() => props.onSave(name, interviewer)} confirm>
+          <Button onClick={validate} confirm>
             Save
           </Button>
         </section>
