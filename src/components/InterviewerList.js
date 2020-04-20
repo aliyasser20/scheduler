@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import InterviewerListItem from "./InterviewerListItem";
 
@@ -21,6 +22,11 @@ const interviewerList = props => {
       <ul className="interviewers__list">{interviewers}</ul>
     </section>
   );
+};
+
+interviewerList.propTypes = {
+  interviewer: PropTypes.number,
+  setInterviewer: PropTypes.func.isRequired
 };
 
 export default interviewerList;
