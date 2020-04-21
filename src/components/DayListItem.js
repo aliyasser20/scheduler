@@ -22,6 +22,7 @@ const dayListItem = props => {
 
   return (
     <li
+      data-testid="day"
       className={dayClass}
       onClick={() => {
         props.setDay(props.name);
