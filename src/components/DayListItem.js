@@ -4,11 +4,13 @@ import classNames from "classnames";
 import "./DayListItem.scss";
 
 const dayListItem = props => {
+  // Classes for whether item is selected or not
   const dayClass = classNames("day-list__item", {
     "day-list__item--selected": props.selected,
     "day-list__item--full": props.spots === 0
   });
 
+  // Format spots string based on number of spots remaining
   const formatSpots = spots => {
     switch (spots) {
       case 0:

@@ -4,6 +4,7 @@ import classNames from "classnames";
 import "./Button.scss";
 
 const Button = props => {
+  // Classes for different button states
   const buttonClass = classNames(
     "button",
     { "button--confirm": props.confirm },

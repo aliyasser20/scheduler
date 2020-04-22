@@ -4,6 +4,7 @@ import classNames from "classnames";
 import "./InterviewerListItem.scss";
 
 const interviewerListItem = props => {
+  // Classes for whether item is selected or not
   const classes = classNames("interviewers__item", {
     "interviewers__item--selected": props.selected
   });

@@ -23,38 +23,49 @@ const ERROR_SAVE = "ERROR_SAVE";
 const ERROR_DELETE = "ERROR_DELETE";
 
 const Appointment = props => {
+  // Initiate state using custom hook
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
 
+  // Function that saves appointment
   const save = (name, interviewer) => {
     const interview = {
       student: name,
       interviewer
     };
 
+    // Transition to saving mode while request finishes
     transition(SAVING);
 
+    // Book interview
     props
       .bookInterview(props.id, interview)
       .then(() => {
+        // Transitions to show mode
         transition(SHOW);
       })
       .catch(err => {
         console.log(err);
+        // Transitions to error saving mode
         transition(ERROR_SAVE, true);
       });
   };
 
+  // Function that destroys appointment
   const destroy = () => {
+    // Transition to deleting mode while request finishes
     transition(DELETING, true);
 
+    // Cancel interview
     props
       .cancelInterview(props.id)
       .then(() => {
+        // Transitions to empty mode
         transition(EMPTY);
       })
       .catch(() => {
+        // Transitions error deleting mode
         transition(ERROR_DELETE, true);
       });
   };

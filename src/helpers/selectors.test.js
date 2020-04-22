@@ -4,6 +4,7 @@ import {
   getInterviewersForDay
 } from "./selectors";
 
+// Testing fake state
 const state = {
   days: [
     {
